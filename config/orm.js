@@ -18,10 +18,9 @@ var orm = {
     });
   },
 
-  updateOne: function(burger_name, devoured, callback) {
-    var queryString =
-      "UPDATE burgers SET devoured = ?? WHERE burger_name = ??;";
-    connection.query(queryString, [burger_name, devoured], function(
+  updateOne: function(devoured, burger_name, callback) {
+    var queryString = "UPDATE burgers SET ?? WHERE ??";
+    connection.query(queryString, [devoured, burger_name], function(
       err,
       result
     ) {
