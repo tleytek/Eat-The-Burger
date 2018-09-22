@@ -1,12 +1,23 @@
-<h1>Eat Da Burger!</h1>
+<div class="container">
+    <h1>Eat Da Burger!</h1>
 
-<ul>
     {{#each burgers}}
-    <li>
-        {{#unless devoured}}
-        {{burger_name}}
-        <input type="button" name="devour">
-        {{/unless}}
-    </li>
+    <div class="row">
+        <div class="col">
+            {{#unless devoured}}
+            {{burger_name}}
+            {{/unless}}
+        </div>
+        <div class="col">
+            {{#unless devoured}}
+            <input type="button" name="devour">
+            {{/unless}}
+        </div>
+        <div class="col">
+            {{#if devoured}}
+            {{burger_name}}
+            {{/if}}
+        </div>
+    </div>
     {{/each}}
-</ul>
+</div>
