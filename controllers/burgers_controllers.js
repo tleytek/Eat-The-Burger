@@ -20,20 +20,14 @@ router.post("/api/burgers", function(req, res) {
 });
 
 router.put("/api/burgers/:id", function(req, res) {
-  var burger = "id = " + req.params.id;
-  burger.devour(
-    {
-      devour: req.body.devour
-    },
-    burger,
-    function(result) {
-      if (result.changedRows == 0) {
-        return res.status(404).end();
-      } else {
-        res.status(200).end();
-      }
+  var burger_id = req.params.id;
+  burger.updateOne(burger_id, function(result) {
+    if (result.changedRows == 0) {
+      return res.status(404).end();
+    } else {
+      res.status(200).end();
     }
-  );
+  });
 });
 
 module.exports = router;
