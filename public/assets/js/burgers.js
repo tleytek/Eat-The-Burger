@@ -19,19 +19,24 @@ $(function() {
 	$("#submitButton").on("click", function(event) {
 		event.preventDefault();
 
-		var newBurger = {
-			burgerName: $("#burgerName")
-				.val()
-				.trim()
-		};
+		var regexLetters = /^(\(?\+?[A-Za-z]*\)?)?[A-Za-z_\- \(\)]*$/g;
+		if (regexLetters.test($("#burgerName").val())) {
+			var newBurger = {
+				burgerName: $("#burgerName")
+					.val()
+					.trim()
+			};
 
-		$.ajax("/api/burgers", {
-			type: "POST",
-			data: newBurger
-		}).then(function() {
-			console.log("created new Burger!");
-			//Reload the pade to get the updated list
-			location.reload();
-		});
+			$.ajax("/api/burgers", {
+				type: "POST",
+				data: newBurger
+			}).then(function() {
+				console.log("created new Burger!");
+				//Reload the pade to get the updated list
+				location.reload();
+			});
+		} else {
+			alert("Please enter a valid burger name");
+		}
 	});
 });
